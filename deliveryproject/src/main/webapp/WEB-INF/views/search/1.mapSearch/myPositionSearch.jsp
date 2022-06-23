@@ -16,6 +16,7 @@
 
       <script type="text/javascript"
          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8800e7024fb23ec08385f1384cbd3f73&libraries=services"></script>
+     
       <script>
          var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
              mapOption = {
@@ -61,12 +62,14 @@
          
         
          
-</script>
+		</script>
+		
       주소 : ${member.addr}
+      
       <form action="<c:url value='/member/placeView.dlv'/>">
          <input type="hidden" name="lat" id="lat" value="" readonly /> 
          <input type="hidden" name="lon" id="lon" value="" readonly /> 
-            <input type="submit" id = "pickup" value='픽업가능 위치' />
+         <input type="submit" id = "pickup" value='픽업가능 위치' />
       </form>
    </center>
 </body>

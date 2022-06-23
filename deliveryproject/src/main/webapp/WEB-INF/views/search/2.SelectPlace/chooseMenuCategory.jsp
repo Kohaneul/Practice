@@ -8,10 +8,10 @@
 <meta charset="UTF-8">
 <title>메뉴고르기</title>
 </head>
-<body>
-<center>
-     <br>
-     <br>
+	<body>
+		<center>
+     	<br>
+     	<br>
 					[ ${place.name} ] 주변 원하는 메뉴를 골라주세요
 					
 					<form action="<c:url value='/place/restaurant.dlv'/>" >
@@ -26,19 +26,7 @@
 					<br>
 					<input type = "submit" value="선택" onclick="close_window()"/>
 		</center>
-		<script language="javascript">
-		function close_window()
-		{
-	   	window.close();//일단 새창을 닫아 주는 함수
-	   	opener.f1.cont1.value == document.newform.cont2.value; 
-	   //현재의 새창에서 부모창으로 값보냄
-	   
-	   	}
-	   </script>
 		
-</body>
+	</body>	
 					
-					
-					
-</body>
 </html>

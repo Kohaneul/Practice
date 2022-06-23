@@ -11,17 +11,20 @@
 </head>
 
 <body>
-<center>
+	<center>
              <h2>장소 선택</h2>    
-                <div id="staticMap" style="width:900px;height:400px;"></div>
+               
+             <div id="staticMap" style="width:900px;height:400px;"></div>
                 
                 
                 <script type="text/javascript"
                     src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8800e7024fb23ec08385f1384cbd3f73"></script>
-           <br>
-               <table id="tableInfo" border = "1px">
+          	 	
+          	 	<br>
+               	
+               	<table id="tableInfo" border = "1px">
              	  <tr>
-                       <th>선택</th>                    
+                      	<th>선택</th>                    
                         <th>장소</th>
                         <th>주소</th>
                         <th>거리</th>
@@ -49,20 +52,21 @@
                
                
                <script>
-                          let lon = new Array();
+                          let lon = new Array();	
                           let lat = new Array();
                            let name = new Array();
                            
-                           //name,address,pickuplat,lpickuplon
                            <c:forEach items="${list}" var="list">
-                           lon.push(Number("${list.pickuplon}"));
-                           lat.push(Number("${list.pickuplat}"));
+                           lon.push(Number("${list.pickuplon}")); //픽업장소 관련 위치값을 배열에 담기
+                           lat.push(Number("${list.pickuplat}")); //픽업장소 관련 위치값을 배열에 담기
                            name.push("${list.name}");
                            </c:forEach>
                        
                   			let idx = lon.length;
-                  			console.log("idx : " + idx);
-                          let markers = new Array();
+                  			
+                  			//마지막에 내 정보를 담아놓은 관계로 중심좌표는 마지막 인덱스 값으로 설정함 
+                          	
+                  			let markers = new Array();
                           
                           for (let i = 0; i<idx; i++) {
                               markers[i] =
@@ -86,6 +90,6 @@
             
             
             
-            </center>
-            </body>
+    </center>
+    </body>
 </html>
