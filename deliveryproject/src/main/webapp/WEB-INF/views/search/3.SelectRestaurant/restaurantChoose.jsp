@@ -8,11 +8,11 @@
 <head>
 <meta charset="utf-8">
 <title>키워드로 장소검색하기</title>
-
 </head>
 <body>
 	<center>
-		<h3>${place.name}(${place.address}) 주변 ${category.category_name}</h3>
+		<h2>${place.name}(${place.address}) 주변 ${category.foodtype}</h2>
+		<h3>(마커를 클릭해주세요)</h3>
 		<div id="map" style="width: 800px; height: 500px;"></div>
 
 
@@ -33,7 +33,7 @@
 				level : 3
 			// 지도의 확대 레벨
 			};
-			let category_name = '${category.category_name}';
+			let foodtype = '${category.foodtype}';
 
 			let dott = '·';
 
@@ -43,21 +43,21 @@
 			// 장소 검색 객체를 생성합니다
 			var ps = new kakao.maps.services.Places();
 
-			function ChangeString(category_name) {
-				console.log(category_name)
-				if (category_name.includes(dott)) {
-					let num = category_name.indexOf(dott);
-					category_name = category_name.substring(0, num);
-					return category_name;
+			function ChangeString(foodtype) {
+				console.log(foodtype)
+				if (foodtype.includes(dott)) {
+					let num = foodtype.indexOf(dott);
+					foodtype = foodtype.substring(0, num);
+					return foodtype;
 				}
-				console.log(category_name)
+				console.log(foodtype)
 
-				return category_name;
+				return foodtype;
 			}
 			
 			// 키워드로 장소를 검색합니다
 			ps.keywordSearch('${place.name}' + ' '
-					+ ChangeString(category_name) + ' 식당', placesSearchCB);
+					+ ChangeString(foodtype) + ' 식당', placesSearchCB);
 
 			// 키워드 검색 완료 시 호출되는 콜백함수 입니다
 			function placesSearchCB(data, status, pagination) {
@@ -111,7 +111,7 @@
 				} else {
 					//확인버튼을 누르면 해당 url로 이동하여 컨트롤러가 처리 예정
 					document.location = "/deli/place/restaurant/selectfinish.dlv?restaurantName="
-							+ restaurantName + "&place_name=" + '${place.name}' + "&category_name=" + '${category.category_name}';
+							+ restaurantName + "&place_name=" + '${place.name}' + "&foodtype=" + '${category.foodtype}';
 				}
 			}
 		</script>

@@ -1,30 +1,33 @@
 package com.githrd.deli.vo;
 
 public class categoryVO {
-	private int category_no;
-	private String category_name;
+	private int code;
+	private String foodtype;
+
+	
 	
 	public categoryVO() {
 	}
-	public categoryVO(int category_no, String category_name) {
-		this.category_no = category_no;
-		this.category_name = category_name;
+
+	public categoryVO(int code, String foodtype) {
+		this.code = code;
+		this.foodtype = foodtype;
 	}
-	public int getCategory_no() {
-		return category_no;
+
+	public int getCode() {
+		return code;
 	}
-	public void setCategory_no(int category_no) {
-		this.category_no = category_no;
+
+	public void setCode(int code) {
+		this.code = code;
 	}
-	public String getCategory_name() {
-		return category_name;
+
+	public String getFoodtype() {
+		return foodtype;
 	}
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
-	}
-	@Override
-	public String toString() {
-		return "categoryVO [category_no=" + category_no + ", category_name=" + category_name + "]";
+
+	public void setFoodtype(String foodtype) {
+		this.foodtype = foodtype;
 	}
 	
 	

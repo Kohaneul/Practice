@@ -5,17 +5,15 @@
 <mapper namespace="CategoryDao">
 
 	<select id="selectOne" resultType="categoryVO" parameterType="string">
-	select category_no , category_name from category where category_name = #{category_name}
+	select foodtype , code from menucategory where foodtype = #{foodtype}
 	</select>
-	
 	<select id="selectNum" resultType="categoryVO" parameterType="string">
-	select category_no , category_name from category where category_no = #{category_no}
+	select foodtype , code from menucategory where code = #{code}
 	</select>
 	
     <select id="selectList" resultType="categoryVO">
-    select * from category
+    select * from menucategory
 	</select>
 </mapper>
-
 
 

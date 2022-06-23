@@ -43,9 +43,8 @@
                 <br>
                             <input type="submit" value="확인"/>
                             </form>
-                            
-					<c:if test="${not empty category_name}">
-						[ 결과 ] 픽업장소 : ${cal.name} 선택한 카테고리:<span id="category_name">${category_name}</span>
+					<c:if test="${not empty category.foodtype}">
+						[ 결과 ] 픽업장소 : ${cal.name} 선택한 카테고리:<span id="foodtype">${category.foodtype}</span>
 						<br>맞습니까? <button id = "yes" onclick="yesOrno(yes)">예</button> <button id = "no" onclick="yesOrno(no)">아니오</button>
 					</c:if>
            

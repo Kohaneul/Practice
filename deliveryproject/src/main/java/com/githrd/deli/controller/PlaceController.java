@@ -16,6 +16,7 @@ import com.githrd.deli.vo.placeVO;
 /*
  * 이 클래스는 회원이 선택한 내용을 토대로 순차적으로 전달해주는 클래스
  *  
+ *  작성자 : 고하늘
  * */
 @Controller
 @RequestMapping("/place")
@@ -23,7 +24,7 @@ public class PlaceController {
 	@Autowired private PlaceDao placedao;	// 픽업장소 관련
 	@Autowired private CategoryDao categorydao;	//음식 카테고리 관련 
 
-	//음식 카테고리 선택
+	//음식 카테고리 정보 요청
 	@GetMapping("/category.dlv")
 	public String chooseCategory(Model model, @Param("name")String name) {
 		List<categoryVO> category = categorydao.selectList();
@@ -35,9 +36,9 @@ public class PlaceController {
 	}
 	//카테고리를 바탕으로 식당 조회, 이를 선택
 	@GetMapping("/restaurant.dlv")
-	public String chooseMenuCategory(Model model,@Param("category_name")String category_name,@Param("place_name")String place_name) {
+	public String chooseMenuCategory(Model model,@Param("foodtype")String foodtype,@Param("place_name")String place_name) {
 		placeVO place = placedao.selectOne(place_name);
-		categoryVO category = categorydao.selectOne(category_name);
+		categoryVO category = categorydao.selectOne(foodtype);
 		model.addAttribute("place",place);
 		model.addAttribute("category",category);
 		return "search/3.SelectRestaurant/restaurantChoose";
@@ -46,9 +47,9 @@ public class PlaceController {
 	
 	//선택한 픽업장소, 식당정보 안내 및 확인창
 	@GetMapping("/restaurant/selectfinish.dlv")
-	public String restaurantChoose(Model model,@Param("category_name")String category_name,@Param("place_name")String place_name,@Param("restaurantName")String restaurantName) {
+	public String restaurantChoose(Model model,@Param("foodtype")String foodtype,@Param("place_name")String place_name,@Param("restaurantName")String restaurantName) {
 		placeVO place = placedao.selectOne(place_name);
-		categoryVO category = categorydao.selectOne(category_name);
+		categoryVO category = categorydao.selectOne(foodtype);
 		model.addAttribute("place",place);
 		model.addAttribute("category",category);
 		model.addAttribute("restaurantName",restaurantName);

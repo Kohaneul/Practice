@@ -8,11 +8,12 @@
 <head>
     <meta charset="utf-8">
     <title>식당 선택 확인창</title>
-</head>
+</head>                           
+
 <body>
 <center>
 <ul>픽업장소 : ${place.name}<br></ul>
-<ul>카테고리 : ${category.category_name}<br></ul>
+<ul>카테고리 : ${category.foodtype}<br></ul>
 <ul>식당명 : ${restaurantName}<br></ul>
 
 <a href = "#"><button>확인</button></a>

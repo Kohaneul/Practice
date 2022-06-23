@@ -24,7 +24,7 @@ import com.githrd.deli.vo.placeVO;
 /*
  * 이 클래스는 아이디를 입력 받으면 그 정보에 맞는 주소값을 가져온 뒤
  * 거리를 계산해서 그에 맞는 정보를 보여주는 controller
- *
+ * 작성자 : 고하늘
  */
 @Controller
 @RequestMapping("/member")

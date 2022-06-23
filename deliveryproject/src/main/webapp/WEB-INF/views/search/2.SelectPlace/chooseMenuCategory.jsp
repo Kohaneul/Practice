@@ -19,9 +19,10 @@
 					
 					     <br>
 					<c:forEach items="${category}" var="category" >
+					     	
 					     
 					
-					<input type="radio" name="category_name" value="${category.category_name}">${category.category_name}<br>
+					<input type="radio" name="foodtype" value="${category.foodtype}">${category.foodtype}<br>
 					</c:forEach>
 					<br>
 					<input type = "submit" value="선택" onclick="close_window()"/>
