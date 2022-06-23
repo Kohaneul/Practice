@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.githrd.deli.dao.CategoryDao;
 import com.githrd.deli.dao.PlaceDao;
-import com.githrd.deli.service.CategoryService;
 import com.githrd.deli.vo.categoryVO;
 import com.githrd.deli.vo.placeVO;
 
@@ -20,7 +19,6 @@ import com.githrd.deli.vo.placeVO;
 public class PlaceController {
 	@Autowired private PlaceDao mapper;
 	@Autowired private CategoryDao dao;
-	@Autowired private CategoryService service;
 
 	
 	@GetMapping("/category.dlv")
@@ -34,27 +32,25 @@ public class PlaceController {
 	}
 	
 	@GetMapping("/restaurant.dlv")
-	public String Restaurant(Model model,@Param("category_name")String category_name,@Param("place_name")String place_name) {
+	public String chooseMenuCategory(Model model,@Param("category_name")String category_name,@Param("place_name")String place_name) {
 		placeVO place = mapper.selectOne(place_name);
 		categoryVO category = dao.selectOne(category_name);
-		category_name = service.reviseCategoryName(category_name);
 		model.addAttribute("place",place);
 		model.addAttribute("category",category);
-		model.addAttribute("category_name",category_name);
 		return "search/3.SelectRestaurant/restaurantChoose";
 	}
 	
-	@GetMapping("/restaurant/selectfinish.dlv")
-	public String chooseRestaurant(Model model,@Param("category_name")String category_name,@Param("place_name")String place_name) {
-		placeVO place = mapper.selectOne(place_name);
-		category_name = service.reviseCategoryName(category_name);
-		
-		model.addAttribute("place",place);
-		model.addAttribute("category_name",category_name);
-		return "search/3.SelectRestaurant/checkInfo";
-	}
 	
+	
+	@GetMapping("/restaurant/selectfinish.dlv")
+	public String restaurantChoose(Model model,@Param("category_name")String category_name,@Param("place_name")String place_name,@Param("restaurantName")String restaurantName) {
+		placeVO place = mapper.selectOne(place_name);
+		categoryVO category = dao.selectOne(category_name);
+		model.addAttribute("place",place);
+		model.addAttribute("category",category);
+		model.addAttribute("restaurantName",restaurantName);
+		return "search/3.SelectRestaurant/checkInfo";
+		}
 	
 	
 }
-

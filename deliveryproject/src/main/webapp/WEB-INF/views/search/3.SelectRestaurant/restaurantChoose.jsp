@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+1<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -12,11 +12,13 @@
 </head>
 <body>
 <center>
-<h3>${place.name} (${place.address}) 주변 ${category_name}</h3>
+<h3>${place.name} (${place.address}) 주변 ${category.category_name}</h3>
 <div id="map" style="width:800px;height:500px;"></div>
 
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8800e7024fb23ec08385f1384cbd3f73&libraries=services"></script>
+		<span id = "restaurantName"></span> 
+
 <script>
 // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
@@ -26,6 +28,10 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         center: new kakao.maps.LatLng(Number("${place.pickuplat}"),Number("${place.pickuplon}")), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };  
+let category_name ='${category.category_name}' ;
+
+let dott = '·';
+	
 
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -33,8 +39,19 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(); 
 
+function ChangeString(category_name){
+	console.log(category_name)
+    if(category_name.includes(dott)){
+    	let num = category_name.indexOf(dott);
+       category_name = category_name.substring(0,num);
+            return category_name;
+    }
+	console.log(category_name)
+
+    return category_name;
+}
 // 키워드로 장소를 검색합니다
-ps.keywordSearch('${place.name}'+' '+'${category_name}', placesSearchCB); 
+ps.keywordSearch('${place.name}'+' '+ChangeString(category_name)+' 식당', placesSearchCB); 
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
@@ -68,19 +85,24 @@ function displayMarker(place) {
         // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
         infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
         infowindow.open(map, marker);
-        document.getElementById('restaurantSelect').value = place.place_name;
-
         document.getElementById('restaurantName').textContent = place.place_name;
+        test(place.place_name);
         
     });
 }
+
+
+function test(restaurantName) {
+    if (!confirm(restaurantName+"이 맞나요?")) {
+        alert("취소");
+    } else {
+    	
+    	document.location = "/deli/place/restaurant/selectfinish.dlv?restaurantName="+restaurantName+"&place_name="+'${place.name}'+"&category_name="+'${category.category_name}';
+    }
+}
 </script>
 
-          <form action="<c:url value='/place/restaurant/selectfinish.dlv'/>">
-         <input type="hidden" name="restaurantSelect" id="restaurantSelect" value="${Result}" readonly /> 
-		<span id = "restaurantName" value=""></span>
-		<input type="submit" value = "확인"/>
-		</form>
+         
 </center>
 </body>
 </html>

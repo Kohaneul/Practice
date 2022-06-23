@@ -18,7 +18,6 @@
 	
 	<bean id="CalculatorService" class="com.githrd.deli.service.CalculatorService" />
 	<bean id="MemberService" class="com.githrd.deli.service.MemberService" />
-	<bean id="CategoryService" class="com.githrd.deli.service.CategoryService" />
 	
 	
 	
