@@ -14,14 +14,14 @@ import com.githrd.deli.vo.categoryVO;
 		
 
 		public categoryVO selectOne(String category_name) {
-			return sqlSession.selectOne("CategoryDao.selectOne",category_name);
+			return sqlSession.selectOne("CDao.selectOne",category_name);
 		}
 		public categoryVO selectNum(int category_no) {
-			return sqlSession.selectOne("CategoryDao.selectNum",category_no);
+			return sqlSession.selectOne("CDao.selectNum",category_no);
 		}
 
 		public List<categoryVO> selectList() {
-			List<categoryVO> list = sqlSession.selectList("CategoryDao.selectList");
+			List<categoryVO> list = sqlSession.selectList("CDao.selectList");
 			return list;
 		}
 		

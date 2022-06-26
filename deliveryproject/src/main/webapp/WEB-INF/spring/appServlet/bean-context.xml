@@ -15,10 +15,13 @@
 	<bean id = "MemberDao" class = "com.githrd.deli.dao.MemberDao"/>
 	<bean id = "PlaceDao" class = "com.githrd.deli.dao.PlaceDao"/>
 	<bean id = "CategoryDao" class = "com.githrd.deli.dao.CategoryDao"/>
+	<bean id = "RestaurantDao" class = "com.githrd.deli.dao.RestaurantDao"/>
+	<bean id = "MiddleareaDao" class = "com.githrd.deli.dao.MiddleareaDao"/>
+	
 	
 	<bean id="CalculatorService" class="com.githrd.deli.service.CalculatorService" />
 	<bean id="MemberService" class="com.githrd.deli.service.MemberService" />
-	
-	
-	
+	<bean id = "PlaceService" class = "com.githrd.deli.service.PlaceService"/>
+	<bean id = "RestaurantService" class = "com.githrd.deli.service.RestaurantService"/>
+	<bean id = "CategoryService" class = "com.githrd.deli.service.CategoryService"/>
 </beans>

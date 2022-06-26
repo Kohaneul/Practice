@@ -16,11 +16,11 @@ public class PlaceDao {
 	
 
 	public placeVO selectOne(String name) {
-		return sqlSession.selectOne("PlaceDao.selectOne",name);
+		return sqlSession.selectOne("PDao.selectOne",name);
 	}
 
 	public List<placeVO> selectList() {
-		List<placeVO> list = sqlSession.selectList("PlaceDao.selectList");
+		List<placeVO> list = sqlSession.selectList("PDao.selectList");
 		return list;
 	}
 	

@@ -17,11 +17,11 @@ public class MemberDao{
 
 	public memberVO selectOne(String id) {
 		
-		return sqlSession.selectOne("MemberDao.selectOne",id);
+		return sqlSession.selectOne("MDao.selectOne",id);
 	}
 
 	public List<memberVO> selectList() {
-		List<memberVO> list = sqlSession.selectList("MemberDao.selectList");
+		List<memberVO> list = sqlSession.selectList("MDao.selectList");
 		return list;
 	}
 
