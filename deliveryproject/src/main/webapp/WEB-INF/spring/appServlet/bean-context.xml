@@ -23,5 +23,4 @@
 	<bean id="MemberService" class="com.githrd.deli.service.MemberService" />
 	<bean id = "PlaceService" class = "com.githrd.deli.service.PlaceService"/>
 	<bean id = "RestaurantService" class = "com.githrd.deli.service.RestaurantService"/>
-	<bean id = "CategoryService" class = "com.githrd.deli.service.CategoryService"/>
 </beans>
