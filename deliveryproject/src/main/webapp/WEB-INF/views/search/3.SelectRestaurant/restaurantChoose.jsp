@@ -25,7 +25,7 @@
 					</tr>
 					<tr>
                         <c:forEach items="${restaurant}" var="restaurant">
-                        <form action="<c:url value='/place/restaurant/selectfinish.dlv'/>">
+                        <form action="<c:url value='/place/restaurant/selectfinish.dlv'/>" name="restaurant">
                              <th><input type="radio" name = "restno" value="${restaurant.restno}"/></th>
                             <th>${restaurant.rname}</th>
                              <th>${restaurant.addr}</th>
@@ -33,7 +33,7 @@
              		   	</c:forEach>
                 </table>
                 
-                	<input type="hidden" name = "place_name" value="${place.name}"/>
+                	<input type="hidden" name = "place_name" value="${place.place_name}"/>
                             <input type="submit" value="확인"/>
                             </form>
                 <script>
@@ -83,6 +83,12 @@
 	      
 	      
 	      
+        
+              function setChildText(){
+                  openWin.document.getElementById("cInput").value = document.getElementById("pInput").value;
+                 }
+             
+             
 	      
 	      
 	      
