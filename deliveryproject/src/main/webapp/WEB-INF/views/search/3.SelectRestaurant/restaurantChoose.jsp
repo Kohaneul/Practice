@@ -6,13 +6,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+
+	let resno;
+	function radioClick(restno){
+		resno = restno;
+		document.getElementsById('no').value = restno;
+		
+	}
+
+</script>
 <meta charset="utf-8">
 <title>키워드로 장소검색하기</title>
 </head>
 <body>
 	<center>
 		<h2>${place.name}(${place.address}) 주변 ${category.foodtype}</h2>
-		<div id="map" style="width: 800px; height: 500px;"></div>
+		<div id="map" style="width: 1000px; height: 600px;"></div>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8800e7024fb23ec08385f1384cbd3f73&libraries=services"></script>
 		
 		<span id="restaurantName"></span>
@@ -25,15 +35,16 @@
 					</tr>
 					<tr>
                         <c:forEach items="${restaurant}" var="restaurant">
-                        <form action="<c:url value='/place/restaurant/selectfinish.dlv'/>" name="restaurant">
-                             <th><input type="radio" name = "restno" value="${restaurant.restno}"/></th>
+                     
+                     <form name = "parentForm2" action="<c:url value='/place/restaurant/selectfinish.dlv'/>">
+                             <th><input type="radio" name = "restno" value="${restaurant.restno}" onclick = "radioClick('${restaurant.restno}')"/></th>
                             <th>${restaurant.rname}</th>
                              <th>${restaurant.addr}</th>
                     </tr>
              		   	</c:forEach>
                 </table>
-                
-                	<input type="hidden" name = "place_name" value="${place.place_name}"/>
+                			<input type="hidden" name = "place_name" value='${place.name}'/>
+                			<input type="hidden" id ="no" values=""/>
                             <input type="submit" value="확인"/>
                             </form>
                 <script>
@@ -41,7 +52,7 @@
            let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
              center: new kakao.maps.LatLng('${place.pickuplat}','${place.pickuplon}'), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
+                level: 4 // 지도의 확대 레벨
                  };
            
            let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -57,42 +68,49 @@
 
 	      	address.push("${place.address}")
 	      	rname.push("픽업 위치 : "+"${place.name}");
-	      
+			let idx2 = idx-1;
+
 	      
 	      address.forEach(function(addr,idx){
 	    	  geocoder.addressSearch(addr,function(result,status){
+	    		  let addr = address.length-1;
+	    		  
 	    		  if(status===kakao.maps.services.Status.OK){
-	    			  let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
-	    			  
-	    			  let marker = new kakao.maps.Marker({
-	    				  map:map,
-	    			  		position:coords
-	    			  });
-	    			  let infowindow = new kakao.maps.InfoWindow({
-	    				  content : '<div style="width:150px;text-align:center;padding:6px 0;">' + rname[idx] + '</div>',
-	    	                disableAutoPan: true
-	    			  });
-	    			  infowindow.open(map,marker);
-	    			  
-	    			  
-	    			  
-	    		  }
-	    	  })
+                      let coords = new kakao.maps.LatLng(result[0].y,result[0].x);
+                      	if(idx==addr){
+                      let marker = new kakao.maps.Marker({map:map,position:coords});
+                      let infowindow = new kakao.maps.InfoWindow({
+                              content : '<div style="width:150px;text-align:center;padding:6px 0;background-color:green;color:white;border-radius: 5px;font-size:9px">' + rname[idx] + '</div>',
+                              disableAutoPan: true
+                    	  });
+                      infowindow.open(map,marker);
+                      	}
+                      	else{
+                      	  let marker = new kakao.maps.Marker({
+                              map:map,
+                                 position:coords
+                           });
+                   	
+                           let infowindow = new kakao.maps.InfoWindow({
+                                   content : '<div style="width:150px;text-align:center;padding:6px 0;background-color:black;color:white;border-radius: 5px;font-size:10px">' + rname[idx] + '</div>',
+                                   disableAutoPan: true
+                         	  });
+                           infowindow.open(map,marker);
+                      	}
+	    		  
+	    		  
+	    		  
+	    	  }})
 	      })
+		  
+		  
+	
 	      
-	      
-	      
-	      
-        
               function setChildText(){
                   openWin.document.getElementById("cInput").value = document.getElementById("pInput").value;
                  }
              
-             
-	      
-	      
-	      
-     	
+          
      	
      	</script>
          

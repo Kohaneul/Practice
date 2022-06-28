@@ -44,9 +44,13 @@
                      position: coords
                  });
 
+                
+                 
+                 
                  // 인포윈도우로 장소에 대한 설명을 표시합니다
                  var infowindow = new kakao.maps.InfoWindow({
-                     content: '<div style="width:150px;text-align:center;padding:6px 0;">나의 위치</div>'
+                     content:  '<div style="width:150px;text-align:center;padding:6px 0;background-color:#ffd400;color:black;font-weight: bold;border-radius: 10px;font-size:11px">나의 위치</div>'
+                    	
                  });
                  infowindow.open(map, marker);
                 

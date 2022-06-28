@@ -14,6 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 import com.githrd.deli.dao.CategoryDao;
 import com.githrd.deli.dao.PlaceDao;
 import com.githrd.deli.dao.RestaurantDao;
+import com.githrd.deli.service.CalculatorService;
 import com.githrd.deli.service.PlaceService;
 import com.githrd.deli.service.RestaurantService;
 import com.githrd.deli.vo.categoryVO;
@@ -33,52 +34,32 @@ public class PlaceController {
 	@Autowired private RestaurantDao restaurantdao;
 	@Autowired private PlaceService placeservice;
 	
-	
-	
-	
-	
+	//@Autowired private CalculatorService calculator;
+
 	
 	//음식 카테고리 정보 요청
 	@GetMapping("/category.dlv")
 	public String chooseCategory(Model model, @Param("name")String name) {
 		List<categoryVO> category = categorydao.selectList();		
 		placeVO place = placedao.selectOne(name);
+		System.out.println(name);
 		model.addAttribute("place", place);
 		model.addAttribute("category",category);
 		return "/search/2.SelectPlace/chooseMenuCategory";
 	}
 	
-//	@GetMapping("/category.dlv")
-//	public String chooseCategory(WebRequest request) {
-//		List<categoryVO> category = categorydao.selectList();
-//		String name = request.getParameter("name");
-//		placeVO place = placedao.selectOne(name);
-//		return "forward:/restaurant.dlv";
-//	}
-	@GetMapping("/category.dlv?place_name={place_name}&code={code}")
-	public String chooseCategory(WebRequest request, Model model, @Param("place_name")String name,@Param("code")int code) {
-		categoryVO category = categorydao.selectNum(code);
-		placeVO place = placedao.selectOne(name);
-		model.addAttribute("place", place);
-		model.addAttribute("category",category);
-		return "forward:/place/restaurant.dlv";
-	}
 	
 	
 	//카테고리를 바탕으로 식당 조회, 이를 선택
 	@GetMapping("/restaurant.dlv")	//code:카테고리 코드, place_name : 장소명
-	public String chooseMenuCategory(Model model,@Param("code")int code,@Param("place_name")String name) {
-		placeVO place = placedao.selectOne(name);
-		System.out.println(place);
+	public String chooseMenuCategory(Model model,@Param("code")int code,@Param("place_name")String place_name) {
+		placeVO place = placedao.selectOne(place_name);
+
 		int mcode = placeservice.getCode(place);
-		System.out.println(mcode);
 		categoryVO category = categorydao.selectNum(code);
-		System.out.println(category);
 		Map<Integer,List<restaurantVO>> RMap = restaurantService.sortMap(code,mcode);
 		List<restaurantVO> restaurant =restaurantService.sortList(RMap.get(mcode));
-		System.out.println("*******************"+restaurant);
 		
-		//레스토랑 배열.... 
 		model.addAttribute("place",place);
 		model.addAttribute("category",category);
 		model.addAttribute("restaurant",restaurant);
@@ -89,12 +70,11 @@ public class PlaceController {
 	//선택한 픽업장소, 식당정보 안내 및 확인창
 	@GetMapping("/restaurant/selectfinish.dlv")
 	public String restaurantChoose(Model model,@Param("restno")int restno,@Param("place_name")String place_name) {
-		System.out.println(restno);
 	
 		placeVO place = placedao.selectOne(place_name);
 		restaurantVO restaurant = restaurantdao.selectRestno(restno);
 		categoryVO category = categorydao.selectNum(restaurant.getCname());
-		
+	//	calculator.disCal(place.getPickuplat(), place.getPickuplon(), lat2, lon2)
 		model.addAttribute("place",place);
 		model.addAttribute("category",category);
 		model.addAttribute("restaurant",restaurant);

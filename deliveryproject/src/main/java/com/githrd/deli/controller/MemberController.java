@@ -41,7 +41,7 @@ public class MemberController {
 	}
 	
 	//id 존재 여부 확인 : 아이디 값이 있으면 그 다음 페이지로 넘어가지만, 존재하지 않으면 하단에 경고 메세지 표시
-	@PostMapping("/insertId2.dlv")
+	@PostMapping("/insertId.dlv")
 	public String insertId(Model model, guestVO guest) {
 		String error =null;
 		service.searchById(guest);
@@ -49,13 +49,13 @@ public class MemberController {
 			error = guest.getError();
 			model.addAttribute("error", error);
 			return "redirect:/member/insertId.dlv";
-			//error 메세지가 존재하면 첫 화면으로 redirect한다.
+			//error 메세지가 존재하면 redirect한다.
 		}
 		else {
 			member = new memberVO(guest.getId(),guest.getAddr());
 			model.addAttribute("member",member);
 			return "/search/1.mapSearch/myPositionSearch";
-			//error 메세지가 존재하지 않는다면 그다음 페이지로 넘어간다
+			//error 메세지가 존재하지 않는다면 그 다음 페이지로 넘어간다
 		}
 	}
 
@@ -64,9 +64,7 @@ public class MemberController {
 	@GetMapping("/placeView.dlv")
 	public String mapSearh(Model model, @Param("lat")double lat, @Param("lon")double lon) {
 		List<placeVO> place = mapper.selectList();	//픽업 리스트
-		System.out.println("리스트 : "+place);
 		List<calculatorVO> cal = new ArrayList<>(place.size()); 
-		System.out.println("cal: "+cal);
 		for(int i = 0; i<place.size();i++) {
 			double distance = calculator.disCal(lon, lat, place.get(i).getPickuplat(), place.get(i).getPickuplon());
 			if(distance<1000) {
