@@ -2,11 +2,14 @@
 
 create table pickup (
     name varchar2(10 char) constraint name_pickup_pk primary key,
-    address varchar2(30 char)constraint name_pickup_nn not null,
+    address varchar2(30 char)constraint address_pickup_nn not null constraint address_pickup_uk unique,
     pickuplat number constraint lat_pickup_nn not null,
     pickuplon number constraint lon_pickup_nn not null
 );
-   
+
+
+
+
 Insert into PICKUP (NAME,ADDRESS,PICKUPLAT,PICKUPLON) values ('경복궁역','서울 종로구 사직로 지하 130',37.57557082171,126.97330778814);
 Insert into PICKUP (NAME,ADDRESS,PICKUPLAT,PICKUPLON) values ('광화문우체국','서울 종로구 종로 6',37.570013917406,126.9780542555);
 Insert into PICKUP (NAME,ADDRESS,PICKUPLAT,PICKUPLON) values ('대방역','서울 영등포구 여의대방로 300',37.513379538688,126.92652335463);
