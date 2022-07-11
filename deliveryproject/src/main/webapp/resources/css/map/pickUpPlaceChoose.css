@@ -1,7 +1,7 @@
 #tableInfo {
 	position: absolute;
 	margin-left: 100px;
-	margin-top:400px;
+	margin-top:500px;
 	width: 25%;
 	border-top: 1px solid #dddddd;
 	border-collapse: collapse;
@@ -21,7 +21,7 @@
 }
 
 #h2style {
-	margin-top: 550px;
+	margin-top: 650px;
 	text-align:center;
 	margin-left:700px;
 	position: absolute;
@@ -109,7 +109,7 @@
 
 #map {
 	width: 1500px;
-	height: 550px;
+	height: 650px;
 	float: left;
 	margin-left: 80px;
 }
