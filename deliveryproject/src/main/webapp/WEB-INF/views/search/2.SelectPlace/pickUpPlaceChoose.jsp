@@ -34,14 +34,11 @@
                          </c:forEach>
                       <tr class="trstyle"/>
                             <input type="hidden" id = "url" value=""/>
-<<<<<<< HEAD
                       		<h2 id="h2style">픽업 장소 
                             <input type="submit" value="선택" name="check" onclick="onClick()"/></h2>
                 </table>
-=======
                       		<h2 style="margin-top:380px;position:absolute;left:1070px">픽업 장소 
                             <input type="submit" value="선택" name="check" style="margin-top:0px" onclick="onClick()"/></h2>
->>>>>>> branch 'spring' of https://github.com/Kohaneul/Practice.git
                             
                <script type = "text/javascript">
                
