@@ -19,6 +19,7 @@
 		<typeAlias alias="categoryVO" type="com.githrd.deli.vo.categoryVO"/>
 		<typeAlias alias="restaurantVO" type="com.githrd.deli.vo.restaurantVO"/>
 		<typeAlias alias="middleareaVO" type="com.githrd.deli.vo.middleareaVO"/>
+		<typeAlias alias="faqVO" type="com.githrd.deli.vo.faqVO"/>
 
 		
 	</typeAliases>
@@ -31,6 +32,7 @@
 		<mapper resource="com/githrd/deli/sql/categorySQL.xml"/>
 		<mapper resource="com/githrd/deli/sql/restaurantSQL.xml"/>
 		<mapper resource="com/githrd/deli/sql/middleareaSQL.xml"/>
+		<mapper resource="com/githrd/deli/sql/faqSQL.xml"/>
 		
 	</mappers>
 	
