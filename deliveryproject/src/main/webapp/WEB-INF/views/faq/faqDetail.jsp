@@ -6,15 +6,41 @@
 <head>
 <meta charset="utf-8">
 <title>FAQ</title>
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/faq/faqDetail.css"/>" >
+
 </head>
 <body>
+<div id="faq">
 <h1>FAQ</h1>
 <ul>번호 : ${faq.no}</ul>
 <ul>아이디 : ${faq.id}</ul>
 <ul>제목 : ${faq.title}</ul>
-<ul>내용 : ${faq.content}</ul>
-<button><a href="<c:url value='/faq/board/update.dlv?no=${faq.no}'/>">수정</button></a>
-<button><a href="<c:url value='/faq/board/delete.dlv?no=${faq.no}'/>">삭제</button></a>
+<br>
+<br>
+<ul id = "content">${faq.content}</ul>
+
+
+<c:if test="${not empty admin}">
+<div id = "buttonArea">
+<a href="<c:url value='/faq/admin/board/update.dlv?no=${faq.no}&id=${admin.id}'/>"><button class="btn">수정</button></a>
+<a href="<c:url value='/faq/admin/board/delete.dlv?no=${faq.no}&id=${admin.id}'/>"><button class="btn">삭제</button></a>
+</c:if>
+<a href="<c:url value='/faq/board.dlv'/>"><button id ="backBtn">뒤로가기</button></a>
+</div>
+
+<!-- 
+<form action="<c:url value='/faq/admin/board/update.dlv'/>">
+<input type="hidden" name = "id" value="${faq.id}">
+<input type ="hidden" name="no" value="${faq.no}">
+<input type="submit" value="수정">
+</form>
+
+<form action="<c:url value='/faq/admin/board/delete.dlv'/>">
+<input type="hidden" name = "id" value="${faq.id}">
+<input type ="hidden" name="no" value="${faq.no}">
+<input type="submit" value="삭제">
+</form>
+  -->
 
 </body>
 </html>
